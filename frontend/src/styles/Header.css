@@ -1,5 +1,5 @@
 
-.hoverable{
+.headerbar .hoverable{
   display:inline-block;
   backface-visibility: hidden;
   font-weight: bold;
@@ -13,7 +13,7 @@
   padding: 10px 50px
 }
 
-.hoverable:before{
+.headerbar .hoverable:before{
   position:absolute;
   pointer-events: none;
   z-index:-1;
@@ -30,10 +30,10 @@
   transition-property: transform, opacity;
 }
 
-.hoverable:hover, .hoverable:active, .hoverable:focus{
+.headerbar .hoverable:hover, .headerbar .hoverable:active, .headerbar .hoverable:focus{
   transform: translateY(-5px);
 }
-.hoverable:hover:before, .hoverable:active:before, .hoverable:focus:before{
+.headerbar .hoverable:hover:before, .headerbar .hoverable:active:before, .headerbar .hoverable:focus:before{
   opacity: 1;
   transform: translateY(-5px);
 }
@@ -72,7 +72,7 @@
   }
 }
 
-.bounce {
+.headerbar .bounce {
   animation-name: bounce-animation;
   animation-duration: 2s;
 }
@@ -83,34 +83,34 @@
 
 
 @media (min-width: 768px) {
-  .navbar{
+  .headerbar .navbar{
     /* text-align: center !important; */
     float: none;
     display: inline-block;
   }
 }
 
-body {
+.headerbar body {
   font-weight:600;
   text-align:center !important;
   color: white;
 }
 
-nav {
+.headerbar nav {
   background: none !important;
   text-transform:uppercase;
 }
 
-nav  {
+.headerbar nav  {
   margin-left: 3em;
   margin-right: 3em;
 }
 
-nav  a{
+.headerbar nav a{
   transition: .5s color ease-in-out;
   text-decoration: none;
 }
 
-.container-fluid{
+.headerbar .container-header{
   background: #5DA271;
 }

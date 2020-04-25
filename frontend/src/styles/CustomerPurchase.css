@@ -1,0 +1,12 @@
+/* Customer Purchase Styles */
+.CustomerPurchase {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+/* Farmer Card Styles */
+.FarmerCard {
+    width: 300px;
+    margin: 20px 0 10px 0;
+    outline: black;
+}

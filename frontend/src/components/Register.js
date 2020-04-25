@@ -49,20 +49,24 @@ class Login extends Component {
                 </div>
                 <form onSubmit={this.handleSubmit}>
                   <div class="form-group">
-                    <label for="emailAddress">Email address</label>
-                    <input type="email" class="form-control" id="emailAddress" />
+                    <label for="emailAddress">User Name</label>
+                    <input name="username" type="text" class="form-control" id="emailAddress" />
                   </div>
                   <div class="form-group">
                     <label for="firstName">First Name</label>
-                    <input type="text" class="form-control" id="firstName" />
+                    <input name="firstName" type="text" class="form-control" id="firstName" />
                   </div>
                   <div class="form-group">
                     <label for="lastName">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" />
+                    <input name="lastName" type="text" class="form-control" id="lastName" />
                   </div>
                   <div class="form-group">
-                    <label for="displayName">Display Name</label>
-                    <input type="text" class="form-control" id="displayName" />
+                    <label for="type">Type</label>
+                    <select name="type" class="form-control">
+                      <option selected></option>
+                      <option value="farmer">Farmer</option>
+                      <option value="customer">Customer</option>
+                    </select>
                   </div>
                   <div className="form-group">
                     <button type="submit" className="btn btn-block btn-primary">Login</button>

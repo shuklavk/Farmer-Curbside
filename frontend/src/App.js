@@ -8,6 +8,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ViewPurchase from './components/ViewPurchase';
 import CustomerPurchase from './components/CustomerPurchase';
+import FarmerAddItems from './components/FarmerAddItems';
+import Header from './components/Header';
 
 function App() {
   return (
@@ -22,9 +24,13 @@ function App() {
         <Route path="/viewpurchase">
           <ViewPurchase />
         </Route>
-        <Router path="/customerpurchases">
+        <Route path="/customerpurchase">
           <CustomerPurchase />
-        </Router>
+        </Route>
+        <Route path="/additems">
+          <Header />
+          <FarmerAddItems />
+        </Route>
       </Switch>
     </Router>
   );

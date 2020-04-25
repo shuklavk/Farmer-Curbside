@@ -1,9 +1,9 @@
 import React from 'react';
 import FarmerCard from './FarmerCard';
+import '../styles/CustomerPurchase.css'
 
 function CustomerPurchase() {
-  const data = {
-    farmerData: [
+    let farmerData = [
       {
         name: "David",
         product: "Apples",
@@ -14,11 +14,10 @@ function CustomerPurchase() {
         product: "Bananas",
         price: 4.99,
       },
-    ]
-  }
+    ];
     return (
       <div className="CustomerPurchase">
-        {farmerData.map(farmer => (<FarmerCard data={data} />))}
+        {farmerData.map((farmer) => (<FarmerCard name={farmer.name} product={farmer.product} price={farmer.price}/>))}
       </div>
     );
 }

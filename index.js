@@ -4,51 +4,47 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+const config = require("./config/config");
+const passport = require("./config/passport");
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+config.connectDB();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
-mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true}, (error) => {
-    console.log(error);
-});
+app.use(
+	session({
+		secret: process.env.APP_SECRET || 'this is the default passphrase',
+		store: new MongoStore({ mongooseConnection: mongoose.connection }),
+		resave: false,
+		saveUninitialized: false
+	})
+)
+app.use(passport.initialize())
+app.use(passport.session())
 
-mongoose.connection.on("open", () => {
-    console.log("succesfully connected");
-});
+const authRouter = require("./routes/auth-router");
 
-mongoose.connection.on("error", () => {
-    console.log("there was an error");
-});
-
-const Cat = mongoose.model('Cat', { name: String });
-
+app.use('/auth', authRouter);
 app.use(express.static(path.join(__dirname, 'frontend/build')));
-
-app.post('/api', (req, res) => {
-    const body = req.body;
-    const kitty = new Cat({
-        name: body.name
-    });
-    kitty
-        .save((error, res) => {
-            if (error) {
-                res.status(400);
-                res.send('Failed to add a cat to the database');
-            }
-            else {
-                res.status(200);
-                res.send('Succesfully added a cat to the database');
-            }
-        })
-        .then(() => {
-            console.log('Cat added to the database');
-        })
-})
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend/build/index.html'));
 })
 
+app.use((err, req, res, next) => {
+	res.status(422).send({ error: err._message });
+});
+
 app.listen(process.env.port || 8080, () => {
     console.log('Express app is running on port 8080');
+});
+
+process.on("SIGINT", () => {
+	config.disconnectDB();
+	process.exit(0);
 });

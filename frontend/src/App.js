@@ -5,6 +5,8 @@ import {
   Route
 } from 'react-router-dom';
 import Login from './components/Login';
+import Register from './components/Register';
+import ViewPurchase from './components/ViewPurchase';
 
 function App() {
   return (
@@ -12,6 +14,12 @@ function App() {
       <Switch>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
+        <Route path="/viewpurchase">
+          <ViewPurchase />
         </Route>
       </Switch>
     </Router>

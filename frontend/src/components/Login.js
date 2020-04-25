@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Card } from "@material-ui/core";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Lock from '@material-ui/icons/Lock';
@@ -85,6 +86,9 @@ class Login extends Component {
                     <button type="submit" className="btn btn-block btn-primary">Login</button>
                   </div>
                 </form>
+                <div className="login-links">
+                  <Link to="/register">Register for an account</Link>
+                </div>
               </div>
               <div className="col-6">
                 <img src={LoginImage} width='100%' />

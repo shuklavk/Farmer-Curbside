@@ -5,26 +5,36 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const config = require("./config/config");
+const passport = require("./config/passport");
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const morgan = require('morgan');
 
 config.connectDB();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true}, (error) => {
-//     console.log(error);
-// });
+app.use(
+	session({
+		secret: process.env.APP_SECRET || 'this is the default passphrase',
+		store: new MongoStore({ mongooseConnection: mongoose.connection }),
+		resave: false,
+		saveUninitialized: false
+	})
+)
+app.use(passport.initialize())
+app.use(passport.session())
 
-// mongoose.connection.on("open", () => {
-//     console.log("succesfully connected");
-// });
+const authRouter = require("./routes/auth-router");
 
-// mongoose.connection.on("error", () => {
-//     console.log("there was an error");
+// morgan.token("id", function getId(req) {
+//   return req.id;
 // });
 
 const Cat = mongoose.model('Cat', { name: String });
 
+app.use('/auth', authRouter);
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 app.post('/api', (req, res) => {

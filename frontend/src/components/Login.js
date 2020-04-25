@@ -9,19 +9,30 @@ import '../styles/Login.css';
 class Login extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      username: '',
+      password: ''
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
+  handleSubmit(e) {
+    e.preventDefault();
+    const { username, password } = this.state;
+    console.log(username);
+    console.log(password);
     axios.post('/auth/login', {
-      username: "dylan",
-      password: "skelo"
-    }).then((res => {
-      console.log(res)
-    }))
-    .catch((err) => {
-      console.log(err)
+      username,
+      password
+    }).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
     })
   }
+
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   render() {
     return (
@@ -30,7 +41,12 @@ class Login extends Component {
           <Card raised={true} style={{ padding: '50px', height: '100%', width: 'auto' }}>
             <div className="row" style={{ height: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
               <div className="col-6">
-                <form>
+                <div className="row">
+                  <div className="col-12 mb-3 login-title">
+                    Welcome!
+                  </div>
+                </div>
+                <form onSubmit={this.handleSubmit}>
                   <div className="form-group">
                     <div className="input-group mb-3 login-field">
                       <div className="input-group-prepend">
@@ -38,7 +54,14 @@ class Login extends Component {
                           <AccountCircle style={{ color: "#CED4DA" }} />
                         </span>
                       </div>
-                      <input type="text" className="form-control" placeholder="Username or Email" v-model="username" aria-label="Username" aria-describedby="basic-addon1"/>
+                      <input
+                        type="text"
+                        name="username"
+                        className="form-control"
+                        placeholder="Username or Email"
+                        aria-label="Username"
+                        aria-describedby="basic-addon1"
+                        onChange={this.handleChange}/>
                     </div>
                   </div>
                   <div className="form-group">
@@ -48,7 +71,14 @@ class Login extends Component {
                           <Lock style={{ color: "#CED4DA" }} />
                         </span>
                       </div>
-                      <input type="password" className="form-control" placeholder="Password" v-model="password" aria-label="Username" aria-describedby="basic-addon2" />
+                      <input
+                        type="password"
+                        name="password"
+                        className="form-control"
+                        placeholder="Password"
+                        aria-label="Username"
+                        aria-describedby="basic-addon2"
+                        onChange={this.handleChange}/>
                     </div>
                   </div>
                   <div className="form-group">

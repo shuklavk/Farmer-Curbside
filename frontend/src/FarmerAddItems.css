@@ -1,0 +1,77 @@
+form {
+  margin: 4% auto;
+  background-color: #5DA271;
+  /* border: 1px solid black; */
+  width: 900px;
+  height: 480px;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 5px 6px #808080 ;
+}
+
+
+input, select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+}
+
+#alreadyUser{
+  text-align: right;
+}
+
+h6{
+  font-size: 9px;
+}
+
+
+
+button {
+  
+}
+
+.inputSlot{
+  padding: 15px;
+}
+
+.btn_1 {
+  display: inline-block;
+  padding: 13.5px 45px;
+  border-radius: 50px;
+  font-size: 14px;
+  color: #fff;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  text-transform: capitalize;
+  background-size: 200% auto;
+  border: 1px solid transparent;
+  box-shadow: 0px 12px 20px 0px rgba(255, 126, 95, 0.15);
+  color: black;
+  /* font-weight: bold; */
+}
+
+/* line 38, E:/172 Etrain Education/172_Etrain_Education_html/sass/_button.scss */
+/* .btn_1:hover {
+  color: #fff !important;
+  background-position: right center;
+  box-shadow: 0px 10px 30px 0px rgba(193, 34, 10, 0.2);
+} */
+
+button:hover {
+  opacity: 0.8;
+}
+
+.container {
+  padding: 16px;
+}
+body{
+  background-color: #f7f7f7;
+}
+
+::placeholder{
+  color:#555555;
+}

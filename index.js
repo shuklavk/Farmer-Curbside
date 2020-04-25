@@ -4,21 +4,24 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const config = require("./config/config");
+
+config.connectDB();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true}, (error) => {
-    console.log(error);
-});
+// mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true, useUnifiedTopology: true}, (error) => {
+//     console.log(error);
+// });
 
-mongoose.connection.on("open", () => {
-    console.log("succesfully connected");
-});
+// mongoose.connection.on("open", () => {
+//     console.log("succesfully connected");
+// });
 
-mongoose.connection.on("error", () => {
-    console.log("there was an error");
-});
+// mongoose.connection.on("error", () => {
+//     console.log("there was an error");
+// });
 
 const Cat = mongoose.model('Cat', { name: String });
 

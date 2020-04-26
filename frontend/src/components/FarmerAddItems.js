@@ -91,9 +91,9 @@ class FarmerAddItems extends React.Component{
                 <div className='inputSlot'>
                   <input type="text" placeholder="Product Description" id="productDescription" required onChange={(e) => { this.onProductDescriptionChange(e.target.value) }} />
                 </div>
-                <div className='inputSlot'>
+                {/* <div className='inputSlot'>
                   <input type="text" placeholder="Address" id="address" required onChange={(e) => { this.onProductAddressChange(e.target.value) }} />
-                </div>
+                </div> */}
                 <div className='inputSlot'>
                   <input type="number" placeholder="Quantity" id="quantity" required onChange={(e) => { this.onQuantityChange(e.target.value)}} />
                 </div>

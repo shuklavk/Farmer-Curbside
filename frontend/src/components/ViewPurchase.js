@@ -79,6 +79,7 @@ class ViewPurchase extends Component {
                             </Card>
                         ))
                     }
+                    <button className="btn btn-primary float-right mt-5">Confirm</button>
                 </div>
             </div>
         );

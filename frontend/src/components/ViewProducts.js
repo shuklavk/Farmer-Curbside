@@ -38,7 +38,7 @@ class ViewProducts extends React.Component {
       axios.get(`/api/showAll/items/${user._id}`)
         .then((res) => {
           console.log(res)
-          this.setState({ dataFetched: true, productData: res.data.results[0].items })
+          this.setState({ dataFetched: true, productData: res.data.results !== undefined ? res.data.results[0].items : [] })
         })
         .catch((err) => {
           console.log(err)

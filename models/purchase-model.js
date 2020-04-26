@@ -9,7 +9,8 @@ let Purchase = new Schema(
         item: {type: Object, required: true},
         quantity: {type: Number, required: true},
         readyPickup: {type: Boolean, required: true},
-        parkingSpot: {type: String}
+        parkingSpot: {type: String},
+        fufilled: {type: Boolean}
     },
     {timestamps: true}
 );

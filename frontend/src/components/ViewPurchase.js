@@ -103,7 +103,7 @@ class ViewPurchase extends Component {
                             </Card>
                         ))
                     }
-                    <button className="btn btn-block btn-primary mt-5">Pickup Items</button>
+                    <button className="btn btn-block btn-primary mt-5" onClick={() => { window.location.href = '/customerpickup' }}>Pickup Items</button>
                 </div>
             </div>
         );

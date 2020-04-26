@@ -9,7 +9,7 @@ import Register from './components/Register';
 import ViewPurchase from './components/ViewPurchase';
 import CustomerPurchase from './components/CustomerPurchase';
 import FarmerAddItems from './components/FarmerAddItems';
-import Header from './components/Header';
+import axios from 'axios';
 
 class App extends Component {
   constructor(props) {

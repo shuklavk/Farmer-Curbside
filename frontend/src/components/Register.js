@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card } from "@material-ui/core";
 import RegisterImage from '../assets/image8.png';
 import axios from "axios";
-import '../styles/Login.css';
+import '../styles/Register.css';
 
 class Register extends Component {
   constructor(props) {
@@ -18,12 +18,14 @@ class Register extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { username, password } = this.state;
-    console.log(username);
-    console.log(password);
-    axios.post('/auth/login', {
+    const { username, password, firstName, lastName, confirmPassword, type } = this.state;
+    axios.post('/auth/register', {
       username,
-      password
+      password,
+      firstName,
+      lastName, 
+      confirmPassword,
+      type
     }).then((res) => {
       console.log(res);
     }).catch((err) => {
@@ -47,20 +49,20 @@ class Register extends Component {
                 </div>
                 <form onSubmit={this.handleSubmit}>
                   <div class="form-group">
-                    <label for="emailAddress">User Name</label>
-                    <input name="username" type="text" class="form-control" id="emailAddress" />
+                    <label for="username">User Name</label>
+                    <input name="username" type="text" class="form-control" id="username" onChange={this.handleChange}/>
                   </div>
                   <div class="form-group">
                     <label for="firstName">First Name</label>
-                    <input name="firstName" type="text" class="form-control" id="firstName" />
+                    <input name="firstName" type="text" class="form-control" id="firstName" onChange={this.handleChange}/>
                   </div>
                   <div class="form-group">
                     <label for="lastName">Last Name</label>
-                    <input name="lastName" type="text" class="form-control" id="lastName" />
+                    <input name="lastName" type="text" class="form-control" id="lastName" onChange={this.handleChange}/>
                   </div>
                   <div class="form-group">
                     <label for="type">Type</label>
-                    <select name="type" class="form-control">
+                    <select name="type" class="form-control" onChange={this.handleChange}>
                       <option selected></option>
                       <option value="farmer">Farmer</option>
                       <option value="customer">Customer</option>
@@ -68,11 +70,11 @@ class Register extends Component {
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
-                    <input name="password" type="password" class="form-control" id="password" />
+                    <input name="password" type="password" class="form-control" id="password" onChange={this.handleChange}/>
                   </div>
                   <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
-                    <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" />
+                    <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" onChange={this.handleChange}/>
                   </div>
                   <div className="form-group">
                     <button type="submit" className="btn btn-block btn-primary">Register</button>

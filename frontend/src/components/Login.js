@@ -28,6 +28,11 @@ class Login extends Component {
       password
     }).then((res) => {
       console.log(res);
+      if (res.data.user.type === 'farmer') {
+        window.location.href = '/additems'
+      } else {
+        window.location.href = '/viewpurchase'
+      }
     }).catch((err) => {
       console.log(err);
     })
@@ -59,7 +64,7 @@ class Login extends Component {
                         type="text"
                         name="username"
                         className="form-control"
-                        placeholder="Username or Email"
+                        placeholder="Username"
                         aria-label="Username"
                         aria-describedby="basic-addon1"
                         onChange={this.handleChange}/>

@@ -1,0 +1,45 @@
+.register-page {
+  height: 100vh;
+  background-color: #F7F7F7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.register-icon {
+  color: #CED4DA;
+}
+
+.register-field span {
+  background: none !important;
+}
+
+.register-field input {
+  height: 50px;
+}
+
+.register-text {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-image img {
+  height: 100%;
+  width: 100%;
+}
+
+.register-links {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.register-forgot {
+  color: #B0B3B5;
+}

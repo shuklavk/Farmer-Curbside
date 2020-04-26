@@ -49,7 +49,26 @@ showAllItems = (req, res) => {
             
             if (results != "")
             {
-                res.json({'success': true, results: results});
+                let farmer = {};
+                let newList = [];
+                let outerLength = results.length;
+                let ind = null;
+                results.forEach((result, index) => {
+                    farmer = result.farmer_info[0];
+                    ind = index;
+                    result.items.forEach((resu, i) => {
+                        resu.farmer = farmer;
+                        console.log('loggin resu');
+                        console.log(resu);
+                        newList.push(resu);
+                        console.log('lengths');
+                        console.log(result.items.length);
+                        console.log(result.length);
+                        if (i == result.items.length - 1 && ind === outerLength - 1) {
+                            res.json({'success': true, results: newList});
+                        }
+                    })
+                })
             }
             else
             {

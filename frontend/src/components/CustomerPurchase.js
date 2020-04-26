@@ -19,7 +19,7 @@ class CustomerPurchase extends Component {
         axios.get(`/api/showAll/items`)
         .then((res) => {
           console.log(res)
-          this.setState({ dataFetched: true, productData: res.data.results[0].items })
+          this.setState({ dataFetched: true, farmerData: res.data.results })
         })
         .catch((err) => {
           console.log(err)
@@ -38,7 +38,9 @@ class CustomerPurchase extends Component {
         <div>
           <Header />
           <div className="CustomerPurchase">
-            {farmerData.map((farmer) => (<FarmerCard name={farmer.name} product={farmer.product} price={farmer.price}/>))}
+            {farmerData.map((item, index) => {
+              return (<FarmerCard item={item}/>)
+            })}
           </div>
         </div>
       );

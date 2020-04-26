@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "@material-ui/core";
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Lock from '@material-ui/icons/Lock';
-import LoginImage from '../assets/image9.jpg';
+import RegisterImage from '../assets/image8.png';
 import axios from "axios";
 import '../styles/Login.css';
 
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,13 +35,13 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="login-page">
+      <div className="register-page">
         <div className="container">
           <Card raised={true} style={{ padding: '50px', height: '100%', width: 'auto' }}>
             <div className="row" style={{ height: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
               <div className="col-6">
                 <div className="row">
-                  <div className="col-12 mb-3 login-title">
+                  <div className="col-12 mb-3 register-title" style={{ textAlign: 'center', fontSize: '2.5rem' }}>
                     Register Here!
                   </div>
                 </div>
@@ -68,16 +66,24 @@ class Login extends Component {
                       <option value="customer">Customer</option>
                     </select>
                   </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input name="password" type="password" class="form-control" id="password" />
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" />
+                  </div>
                   <div className="form-group">
-                    <button type="submit" className="btn btn-block btn-primary">Login</button>
+                    <button type="submit" className="btn btn-block btn-primary">Register</button>
                   </div>
                 </form>
-                <div className="login-links">
+                <div className="register-links">
                   <Link to="/login">Login</Link>
                 </div>
               </div>
               <div className="col-6">
-                <img src={LoginImage} width='100%' />
+                <img src={RegisterImage} width='100%' />
               </div>
             </div>
           </Card>
@@ -87,7 +93,7 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;
 
 
 {/* <form v-on:submit.prevent="onSubmit">

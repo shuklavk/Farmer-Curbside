@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../components/Header';
 import '../styles/FarmerAddItems.css'
 
 class FarmerAddItems extends React.Component{
@@ -38,6 +39,7 @@ class FarmerAddItems extends React.Component{
   render(){
     return (
       <div className="farmeradd">
+        <Header />
         <form action="/" method="get" onSubmit={() => console.log('yeet')}>
           <div className='inputSlot'>
             <input type="text" id="productName" placeholder="Product Name" required onChange={(e) => { this.onProductNameChange(e.target.value) }} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,29 +11,62 @@ import CustomerPurchase from './components/CustomerPurchase';
 import FarmerAddItems from './components/FarmerAddItems';
 import Header from './components/Header';
 
-function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/viewpurchase">
-          <ViewPurchase />
-        </Route>
-        <Route path="/customerpurchase">
-          <CustomerPurchase />
-        </Route>
-        <Route path="/additems">
-          <Header />
-          <FarmerAddItems />
-        </Route>
-      </Switch>
-    </Router>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      loggedIn: null
+    }
+  }
+
+  componentDidMount() {
+		axios
+			.get("/auth/user")
+			.then(response => {
+				console.log(response.data);
+				if (!!response.data.user) {
+					console.log("THERE IS A USER");
+					this.setState({
+						loggedIn: true,
+						user: response.data.user
+					});
+				} else {
+					this.setState({
+						loggedIn: false,
+						user: null
+					});
+				}
+			})
+			.catch(err => {
+				console.log(err)
+			})
+  }
+
+  render() {
+    const { loggedIn, user } = this.state;
+    return (
+      <Router>
+        <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/viewpurchase">
+            <ViewPurchase loggedIn={loggedIn} user={user} />
+          </Route>
+          <Route path="/customerpurchase">
+            <CustomerPurchase loggedIn={loggedIn} user={user} />
+          </Route>
+          <Route path="/additems">
+            <FarmerAddItems loggedIn={loggedIn} user={user} />
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;

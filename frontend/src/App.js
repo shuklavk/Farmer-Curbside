@@ -10,6 +10,7 @@ import ViewPurchase from './components/ViewPurchase';
 import CustomerPurchase from './components/CustomerPurchase';
 import FarmerAddItems from './components/FarmerAddItems';
 import Header from './components/Header';
+import FulfillmentCard from './components/FulFillmentCard';
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
         <Route path="/additems">
           <Header />
           <FarmerAddItems />
+        </Route>
+        <Route path="/fulfill">
+          <Header/>
+          <FulfillmentCard />
+          {/* <FulfillmentCard /> */}
         </Route>
       </Switch>
     </Router>

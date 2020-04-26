@@ -1,0 +1,17 @@
+Card{
+  padding: 50px;
+}
+
+.fulfillBtn{
+  float: right;
+  /* padding-right: 30px; */
+}
+
+.codeSpan{
+  font-weight: bold;
+  float: right;
+}
+
+.code{
+  padding-right: 100px;
+}

@@ -1,0 +1,38 @@
+.editBtn {
+  color: #494949 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 6px;
+  border: 2px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  }
+.button_cont{
+  padding-bottom: 8px;
+}
+
+  .editBtn:hover {
+    color: #ffffff !important;
+    background: #5EA270;
+    border-color: #5EA270 !important;
+    transition: all 0.4s ease 0s;
+    }
+
+    .deleteBtn {
+  color: #494949 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 6px;
+  border: 2px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  }
+
+  .deleteBtn:hover {
+    color: #ffffff !important;
+    background: red;
+    border-color: red !important;
+    transition: all 0.4s ease 0s;
+    }

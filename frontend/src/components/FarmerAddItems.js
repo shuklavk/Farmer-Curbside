@@ -36,6 +36,10 @@ class FarmerAddItems extends React.Component{
     }).catch((err) => {
       console.log(err);
     })
+    this.onProductAddressChange();
+    this.onProductAddressChange();
+    this.onQuantityChange();
+    this.onPriceChange();
   }
 
   onProductNameChange(value) {

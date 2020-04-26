@@ -47,7 +47,7 @@ function FarmerCard(props) {
           <Typography gutterBottom variant="h4">
             {item.price}/{item.productName}
           </Typography>
-          <Button variant="contained" color="secondary" onClick={() => makePurchase()}>Add to Cart</Button>
+          <button type="submit" className="btn btn-block btn-primary" onClick={() => makePurchase()}>Add to Cart</button>
         </CardContent>
       </Card>
     </div>

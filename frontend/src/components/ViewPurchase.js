@@ -104,7 +104,6 @@ class ViewPurchase extends Component {
                             </Card>
                         ))
                     }
-                    <button className="btn btn-primary float-right mt-5">Confirm</button>
                     <div class="mt-5">
                         <label for="parkingSpot">Parking Spot Number</label>
                         <input name="parkingSpot" type="text" class="form-control" id="parkingSpot" onChange={this.handleChange}/>

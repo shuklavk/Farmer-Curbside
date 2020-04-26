@@ -25,7 +25,7 @@ class FarmerHeader extends React.Component {
             <div className="container-fluid">
               <a id="len1" className="hoverable" href="/viewproducts">View Products</a>
               <a id="len2" className="hoverable" href="/additems">Add Items</a>
-              <a id="len3" className="hoverable" href="/fufillorder">Fulfill Orders</a>
+              <a id="len3" className="hoverable" href="/fulfillment">Fulfill Orders</a>
               <a id="len4" className="hoverable" href="#" onClick={this.logout}>Logout</a>
             </div>
           </nav>

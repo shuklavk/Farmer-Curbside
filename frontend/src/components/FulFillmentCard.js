@@ -57,15 +57,17 @@ export default function FulFillmentCard() {
   })
   
   return (
-    <div className={classes.root}>
+    <div>
       <Header />
-      <Grid container spacing={3} 
-        // direction="column"
-        justify="space-evenly"
-        alignItems="center"
-      >
-        {ordersArr}
-      </Grid>
+      <div className={classes.root}>
+        <Grid container spacing={3} 
+          // direction="column"
+          justify="space-evenly"
+          alignItems="center"
+        >
+          {ordersArr}
+        </Grid>
+      </div>
     </div>
   );
 }

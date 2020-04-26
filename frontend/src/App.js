@@ -77,7 +77,7 @@ class App extends Component {
             <ViewProducts loggedIn={loggedIn} user={user} />
           </Route>
           <Route path="/fulfillment">
-            <FulfillmentCard arrOfOrders={"placeholder string"}/>
+            <FulfillmentCard loggedIn={loggedIn} user={user} arrOfOrders={"placeholder string"}/>
           </Route>
         </Switch>
       </Router>

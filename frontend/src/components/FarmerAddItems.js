@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from './FarmerHeader';
 import '../styles/FarmerAddItems.css'
 import { Redirect } from 'react-router';
 import axios from 'axios';
@@ -21,7 +21,8 @@ class FarmerAddItems extends React.Component{
     e.preventDefault();
     const { productName, productDescription, quantity, price } = this.state;
     const { user } = this.props;
-    axios.post('/api/additem', {
+    console.log(user)
+    axios.post(`/api/add/${user._id}`, {
       productName,
       productDescription,
       quantity,

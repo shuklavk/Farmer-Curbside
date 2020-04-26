@@ -5,6 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Header from './FarmerHeader';
 import '../styles/FulFillmentCard.css'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -45,25 +46,28 @@ export default function FulFillmentCard() {
   let ordersArr = testArr.map((order) => {
     return (
       <Grid item xs={12}>
-            <Paper justify="space-evenly" className={classes.paper}>Deliver {order.soldQuantity} {order.productName} to parking spot #{order.parkingSpot}      
-            <span className='codeSpan'> <span className= 'code'>CODE: {order.deliveryCode}</span>
-            <ColorButton className = {classes.button} variant="contained" size='large'>Fulfill Order</ColorButton>
-            </span> 
-            
-            </Paper>
-          </Grid>
+        <Paper justify="space-evenly" className={classes.paper}>Deliver {order.soldQuantity} {order.productName} to parking spot #{order.parkingSpot}      
+        <span className='codeSpan'> <span className= 'code'>CODE: {order.deliveryCode}</span>
+        <ColorButton className = {classes.button} variant="contained" size='large'>Fulfill Order</ColorButton>
+        </span> 
+        
+        </Paper>
+      </Grid>
     )
   })
   
   return (
-    <div className={classes.root}>
-      <Grid container spacing={3} 
-        // direction="column"
-        justify="space-evenly"
-        alignItems="center"
-      >
-        {ordersArr}
-      </Grid>
+    <div>
+      <Header />
+      <div className={classes.root}>
+        <Grid container spacing={3} 
+          // direction="column"
+          justify="space-evenly"
+          alignItems="center"
+        >
+          {ordersArr}
+        </Grid>
+      </div>
     </div>
   );
 }

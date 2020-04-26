@@ -1,18 +1,40 @@
 import React from 'react';
-import '../styles/PickupConfirmation.css'
+import { Redirect } from 'react-router-dom';
+import '../styles/PickupConfirmation.css';
 import image from "../assets/image3.png";
+import Header from "../components/CustomerHeader";
 import { Button } from '@material-ui/core'; 
 
-function PickupConfirmation() {
-    return (
-      <div className="PickupConfirmation">
-        <h1>Your goods will be delivered shortly!<br></br>Your unique code for pickup is:<br></br> A3B6!</h1>
-        <form>
-            <Button variant="contained" color="secondary">Return To Discovery</Button>
-        </form>
-        <img className="farmer-image"src={image}></img>
-      </div>
-    );
+function PickupConfirmation(props) {
+  const { user, loggedIn } = props;
+  console.log(user)
+  return (
+    <div>
+      {
+        loggedIn === false
+        ? (
+          <Redirect to="/login" />
+        )
+        : null
+      }
+      {
+        user !== null
+        ? (
+          <div>
+            <Header />
+            <div className="PickupConfirmation">
+              <h1>Your goods will be delivered shortly!<br></br>Your unique code for pickup is:<br></br> {user.code}!</h1>
+              <form>
+                  <Button variant="contained" color="secondary" onClick={() => {window.location.href = '/customerpurchase'}}>Return To Discovery</Button>
+              </form>
+              <img className="farmer-image"src={image}></img>
+            </div>
+          </div>
+        )
+        : null
+      }
+    </div>
+  );
 }
   
 export default PickupConfirmation;

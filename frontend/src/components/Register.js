@@ -19,15 +19,20 @@ class Register extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { username, password, firstName, lastName, confirmPassword, type } = this.state;
+    const code = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 4).toUpperCase();
     axios.post('/auth/register', {
       username,
       password,
       firstName,
       lastName, 
       confirmPassword,
-      type
+      type,
+      code
     }).then((res) => {
       console.log(res);
+      if (res.statusCode === 200) {
+        window.location.href = '/login'
+      }
     }).catch((err) => {
       console.log(err);
     })

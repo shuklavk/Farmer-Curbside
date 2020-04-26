@@ -31,14 +31,14 @@ const ColorButton = withStyles(theme => ({
   root: {
     color: theme.palette.getContrastText('#000'),
     backgroundColor: "#5EA270",
-    float:'right',
+    float: 'right',
     fontSize: '20px',
   }
 }))(Button);
 
 // ******NEED PASSED DATA TO BE IN THIS FORMAT******
-const testArr = [{productName:'oranges', soldQuantity:10, parkingSpot:'Z54', deliveryCode:'34234'}, 
-{productName:'apples', soldQuantity:52, parkingSpot:'B34', deliveryCode:'6920'}
+const testArr = [{ productName: 'oranges', soldQuantity: 10, parkingSpot: 'Z54', deliveryCode: '34234' },
+{ productName: 'apples', soldQuantity: 52, parkingSpot: 'B34', deliveryCode: '6920' }
 ];
 // ***************************************************
 

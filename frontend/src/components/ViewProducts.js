@@ -4,7 +4,7 @@ import Header from './FarmerHeader';
 import axios from 'axios';
 import '../styles/CustomerPurchase.css'
 
-class ViewProducts extends Component {
+class ViewProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,14 +17,14 @@ class ViewProducts extends Component {
     const { user } = this.props;
     if (user) {
       axios.get(`/api/showAll/items/${user._id}`)
-      .then((res) => {
-        console.log(res)
-        this.setState({ dataFetched: true, productData: res.data.results[0].items })
-      })
-      .catch((err) => {
-        console.log(err)
-        this.setState({ dataFetched: true })
-      })
+        .then((res) => {
+          console.log(res)
+          this.setState({ dataFetched: true, productData: res.data.results[0].items })
+        })
+        .catch((err) => {
+          console.log(err)
+          this.setState({ dataFetched: true })
+        })
     }
   }
 
@@ -39,11 +39,17 @@ class ViewProducts extends Component {
       <div>
         <Header />
         <div className="CustomerPurchase">
-          {productData.map((product) => (<ProductCard name={product.productName} description={product.productDescription} quantity={product.quantity} price={product.price}/>))}
+          {productData.map((product) => (
+            <ProductCard
+              name={product.productName} 
+              description={product.productDescription} 
+              quantity={product.quantity} 
+              price={product.price} 
+            />))}
         </div>
       </div>
     );
   }
 }
-  
+
 export default ViewProducts;

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 let Items = new Schema(
     {
-        farmer_id: {type: String, required: true},
+        farmer_id: {type: Schema.Types.ObjectId, required: true},
         items: [
             {
                 productName: {type: String, required: true},

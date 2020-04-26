@@ -47,7 +47,7 @@ class ViewPurchase extends Component {
         axios.get(`/api/showAll/purchases/${user._id}`)
         .then((res) => {
             console.log(res);
-            this.setState({ dataFetched: true, purchases: res.data.results });
+            this.setState({ dataFetched: true, purchases: res.data.results !== undefined ? res.data.results : [] });
         })
         .catch((err) => {
             console.log(err);

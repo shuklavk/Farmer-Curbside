@@ -19,7 +19,7 @@ class CustomerPurchase extends Component {
         axios.get(`/api/showAll/items`)
         .then((res) => {
           console.log(res)
-          this.setState({ dataFetched: true, farmerData: res.data.results })
+          this.setState({ dataFetched: true, farmerData: res.data.results !== undefined ? res.data.results : [] })
         })
         .catch((err) => {
           console.log(err)

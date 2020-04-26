@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import '../styles/FarmerAddItems.css'
 import { Redirect } from 'react-router';
-import Axios from 'axios';
+import axios from 'axios';
 
 class FarmerAddItems extends React.Component{
   constructor(props){

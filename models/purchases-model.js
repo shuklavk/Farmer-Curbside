@@ -7,7 +7,8 @@ let Purchases = new Schema(
         purchases: [
             {
                 product_id: {type: String, required: true},
-                quantity: {type: Number, required: true}
+                quantity: {type: Number, required: true},
+                ready
             }
         ]
     },

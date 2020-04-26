@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import '../styles/FarmerAddItems.css'
 import { Redirect } from 'react-router';
+import Axios from 'axios';
 
 class FarmerAddItems extends React.Component{
   constructor(props){
@@ -13,6 +14,27 @@ class FarmerAddItems extends React.Component{
       price : 0,
       address:'',
     }
+    this.addItem = this.addItem.bind(this);
+  }
+
+  addItem(e) {
+    e.preventDefault();
+    const { productName, productDescription, quantity, price } = this.state;
+    const { user } = this.props;
+    axios.post('/api/additem', {
+      productName,
+      productDescription,
+      quantity,
+      price,
+      user
+    }).then((res) => {
+      if (res.statusCode === 200) {
+        console.log('success');
+        window.location.reload();
+      }
+    }).catch((err) => {
+      console.log(err);
+    })
   }
 
   onProductNameChange(value) {
@@ -61,7 +83,7 @@ class FarmerAddItems extends React.Component{
           ? (
             <div className="farmeradd">
               <Header />
-              <form action="/" method="get" onSubmit={() => console.log('yeet')}>
+              <form action="/" method="get" onSubmit={this.addItem}>
                 <div className='inputSlot'>
                   <input type="text" id="productName" placeholder="Product Name" required onChange={(e) => { this.onProductNameChange(e.target.value) }} />
                 </div>
@@ -78,7 +100,7 @@ class FarmerAddItems extends React.Component{
                   <input type="number" min="0.00" max="10000.00" step="0.01" placeholder="Price (in dollars)" id="price" onChange={(e) => {this.onPriceChange(e.target.value)}} />
                 </div>
                 <div className='inputSlot'>
-                  <input className='btn_1' type="submit" value="Add Product" />
+                  <input className='btn_1' type="submit" value="Add Product" onClick={this.addItem} />
                 </div>
               </form>
             </div>

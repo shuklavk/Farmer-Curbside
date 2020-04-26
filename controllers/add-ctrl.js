@@ -1,6 +1,6 @@
 const Items = require('../models/items-model');
 
-add = (req, res) =>
+addItem = (req, res) =>
 {
     let item = req.body;
 
@@ -28,4 +28,4 @@ add = (req, res) =>
     )
 };
 
-module.exports = {add};
+module.exports = {addItem};

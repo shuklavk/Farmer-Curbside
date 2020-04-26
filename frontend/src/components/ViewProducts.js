@@ -11,6 +11,25 @@ class ViewProducts extends React.Component {
       productData: [],
       dataFetched: false
     }
+    this.deleteProduct = this.deleteProduct.bind(this);
+  }
+
+  // PUT AXIOS DELETE CALL IN THIS FUNCTION 
+  deleteProduct(productName){
+    const { productData } = this.state;
+    let deleteIndex = -1;
+    for(let i = 0; i < productData.length; i++){
+      if(productData[i].productName === productName){
+        deleteIndex = i;
+        break;
+      }
+    }
+    if(deleteIndex>=0){
+      this.setState({
+        productData: this.state.productData.filter((_, i) => i !== deleteIndex)
+      });
+    }
+
   }
 
   fetchItems() {
@@ -41,11 +60,10 @@ class ViewProducts extends React.Component {
         <div className="CustomerPurchase">
           {productData.map((product) => (
             <ProductCard
-              name={product.productName} 
-              description={product.productDescription} 
-              quantity={product.quantity} 
-              price={product.price} 
-            />))}
+              product={product}
+              deleteProduct ={this.deleteProduct} 
+            />
+            ))}
         </div>
       </div>
     );

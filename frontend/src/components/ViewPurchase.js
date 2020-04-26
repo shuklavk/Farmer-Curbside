@@ -5,36 +5,54 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Header from './CustomerHeader';
+import axios from 'axios';
 import '../styles/custom.scss';
 
 class ViewPurchase extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            Purchases: [
-                {
-                    name: "David",
-                    item: {
-                        name: "Apples",
-	                    description: "Crab Apples grown from my farm in Riverside, California.",
-	                    price: "5.99",
-	                    quantity: "10"
-                    },
-                    readyForPickup: false
-                },
-                {
-                    name: "Joe",
-                    item: {
-                        name: "Banana",
-	                    description: "Crab Bananas grown from my farm in Riverside, California.",
-                        price: 4.99,
-	                    quantity: 5
-                    },
-                    readyForPickup: false
-                }
-            ]
+            purchases: [],
+            dataFetched: false,
+            parkingSpot: "",
         }
+    }
+
+    handleChange = (e) => this.setState({ [e.target.name]: e.target.value })
+
+    handlePickup() {
+        const { purchases, parkingSpot } = this.state;
+        const { user } = this.props;
+        purchases.forEach((purchase, index) => {
+            axios.post(`/api/add/purchase/${user._id}`, {
+                item_id: purchase.item_id,
+                farmer_id: purchase.farmer_id,
+                item: purchase.item,
+                quantity: purchase.quantity,
+                readyPickup: true,
+                parkingSpot,
+            }).then((res) => {
+                console.log(res);
+                window.location.href = '/pickupconfirmation'
+            }).catch((err) => {
+                console.log(err);
+            })
+        })
+    }
+
+    fetchItems() {
+        const { user } = this.props;
+        axios.get(`/api/showAll/purchases/${user._id}`)
+        .then((res) => {
+            console.log(res);
+            this.setState({ dataFetched: true, purchases: res.data.results });
+        })
+        .catch((err) => {
+            console.log(err);
+            this.setState({ dataFetched: true });
+        })
     }
 
     decreaseQuantity(index){
@@ -55,15 +73,22 @@ class ViewPurchase extends Component {
         this.setState({ Purchases });
     }
 
-    render(){
+    render() {
+        const { purchases, dataFetched } = this.state;
+        const { user } = this.props;
+        if (user && !dataFetched) {
+          this.fetchItems();
+        }
+
         return (
             <div className="ViewPurchase"> 
+                <Header />
                 <div className="container">                
                     {
-                        this.state.Purchases.map((data, index) => (
-                            <Card className="mt-5">
+                        purchases.map((data, index) => (
+                            <Card className="mt-5" raised={true}>
                                 <CardContent className="bg-danger text-light">
-                                    <Typography variant="h4">{data.item.name} - Farmer {data.name}</Typography>
+                                    <Typography variant="h4">{data.item.productName} - Farmer {data.farmer[0].firstName} {data.farmer[0].lastName}</Typography>
                                     <Typography variant="h5">${data.item.price}/each</Typography>
                                     <Typography variant="h5" className="text-dark">{data.item.description}</Typography>
                                     
@@ -72,14 +97,19 @@ class ViewPurchase extends Component {
                                     <button onClick={() => this.removeItem(index)} className="btn btn-primary">Remove</button>
                                     <div className="float-right">
                                         <button onClick={() => this.decreaseQuantity(index)} className="btn btn-primary ml-5">-</button>
-                                        <Typography variant="h5" style={{display: "inline-block"}} className="ml-2 mr-2">{data.item.quantity}</Typography>
+                                        <Typography variant="h5" style={{display: "inline-block"}} className="ml-2 mr-2">{data.quantity}</Typography>
                                         <button onClick={() => this.increaseQuantity(index)} className="btn btn-primary">+</button>
-                                    </div>   
+                                    </div>
                                 </CardActions>
                             </Card>
                         ))
                     }
                     <button className="btn btn-primary float-right mt-5">Confirm</button>
+                    <div class="mt-5">
+                        <label for="parkingSpot">Parking Spot Number</label>
+                        <input name="parkingSpot" type="text" class="form-control" id="parkingSpot" onChange={this.handleChange}/>
+                    </div>
+                    <button className="btn btn-block btn-primary mt-5" onClick={() => { this.handlePickup() }}>Pickup Items</button>
                 </div>
             </div>
         );

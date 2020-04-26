@@ -10,6 +10,7 @@ class FarmerAddItems extends React.Component{
       productDescription :'',
       quantity : 0,
       price : 0,
+      address:'',
     }
   }
 
@@ -18,6 +19,13 @@ class FarmerAddItems extends React.Component{
       productName: value,
     })
   }
+
+  onProductAddressChange(value) {
+    this.setState({
+      address: value,
+    })
+  }
+
   onProductDescriptionChange(value) {
     this.setState({
       productDescription: value,
@@ -46,6 +54,9 @@ class FarmerAddItems extends React.Component{
           </div>
           <div className='inputSlot'>
             <input type="text" placeholder="Product Description" id="productDescription" required onChange={(e) => { this.onProductDescriptionChange(e.target.value) }} />
+          </div>
+          <div className='inputSlot'>
+            <input type="text" placeholder="Address" id="address" required onChange={(e) => { this.onProductAddressChange(e.target.value) }} />
           </div>
           <div className='inputSlot'>
             <input type="number" placeholder="Quantity" id="quantity" required onChange={(e) => { this.onQuantityChange(e.target.value)}} />

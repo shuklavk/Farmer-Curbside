@@ -85,7 +85,7 @@ class ViewPurchase extends Component {
                 <div className="container">                
                     {
                         purchases.map((data, index) => (
-                            <Card className="mt-5">
+                            <Card className="mt-5" raised={true}>
                                 <CardContent className="bg-danger text-light">
                                     <Typography variant="h4">{data.item.productName} - Farmer {data.farmer[0].firstName} {data.farmer[0].lastName}</Typography>
                                     <Typography variant="h5">${data.item.price}/each</Typography>
@@ -98,11 +98,12 @@ class ViewPurchase extends Component {
                                         <button onClick={() => this.decreaseQuantity(index)} className="btn btn-primary ml-5">-</button>
                                         <Typography variant="h5" style={{display: "inline-block"}} className="ml-2 mr-2">{data.quantity}</Typography>
                                         <button onClick={() => this.increaseQuantity(index)} className="btn btn-primary">+</button>
-                                    </div>   
+                                    </div>
                                 </CardActions>
                             </Card>
                         ))
                     }
+                    <button className="btn btn-block btn-primary mt-5">Pickup Items</button>
                 </div>
             </div>
         );

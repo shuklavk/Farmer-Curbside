@@ -8,7 +8,8 @@ let Purchase = new Schema(
         item_id: {type: Schema.Types.ObjectId, required: true},
         item: {type: Object, required: true},
         quantity: {type: Number, required: true},
-        readyPickup: {type: Boolean, required: true}
+        readyPickup: {type: Boolean, required: true},
+        parkingSpot: {type: String}
     },
     {timestamps: true}
 );

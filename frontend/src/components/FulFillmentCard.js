@@ -49,8 +49,7 @@ export default function FulFillmentCard() {
         <Paper justify="space-evenly" className={classes.paper}>Deliver {order.soldQuantity} {order.productName} to parking spot #{order.parkingSpot}      
         <span className='codeSpan'> <span className= 'code'>CODE: {order.deliveryCode}</span>
         <ColorButton className = {classes.button} variant="contained" size='large'>Fulfill Order</ColorButton>
-        </span> 
-        
+        </span>
         </Paper>
       </Grid>
     )

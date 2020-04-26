@@ -12,7 +12,15 @@ function CustomerPurchase() {
       },
       {
         name: "Joe",
-        product: "Bananas",
+        product: "Tomatoes",
+        price: 4.99,
+      },{
+        name: "Joe",
+        product: "Pears",
+        price: 4.99,
+      },{
+        name: "Joe",
+        product: "Grapes",
         price: 4.99,
       },
       {

@@ -12,6 +12,7 @@ import FarmerAddItems from './components/FarmerAddItems';
 import CustomerPickup from './components/CustomerPickup';
 import PickupConfirmation from './components/PickupConfirmation';
 import ViewProducts from './components/ViewProducts';
+import FulfillmentCard from './components/FulFillmentCard'
 import axios from 'axios';
 
 class App extends Component {
@@ -74,6 +75,9 @@ class App extends Component {
           </Route>
           <Route path="/viewproducts">
             <ViewProducts loggedIn={loggedIn} user={user} />
+          </Route>
+          <Route path="/fulfillment">
+            <FulfillmentCard arrOfOrders={"placeholder string"}/>
           </Route>
         </Switch>
       </Router>

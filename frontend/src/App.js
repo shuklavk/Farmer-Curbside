@@ -11,6 +11,7 @@ import CustomerPurchase from './components/CustomerPurchase';
 import FarmerAddItems from './components/FarmerAddItems';
 import CustomerPickup from './components/CustomerPickup';
 import PickupConfirmation from './components/PickupConfirmation';
+import ViewProducts from './components/ViewProducts';
 import axios from 'axios';
 
 class App extends Component {
@@ -70,6 +71,9 @@ class App extends Component {
           </Route>
           <Route path="/additems">
             <FarmerAddItems loggedIn={loggedIn} user={user} />
+          </Route>
+          <Route path="/viewproducts">
+            <ViewProducts loggedIn={loggedIn} user={user} />
           </Route>
         </Switch>
       </Router>

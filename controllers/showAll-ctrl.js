@@ -6,7 +6,7 @@ showAllFarmerItems = (req, res) =>
     (
         [
             {$match: {"farmer_id": req.params.user_id}},
-            {$unwind: "$items"}
+            // {$unwind: "$items"}
         ],
         (err, results) =>
         {
@@ -27,4 +27,4 @@ showAllFarmerItems = (req, res) =>
     )
 };
 
-module.exports = {add};
+module.exports = {showAllFarmerItems};

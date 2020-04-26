@@ -18,11 +18,11 @@ add = (req, res) =>
 
             if (result.n > 0)
             {
-                res.json({'success': true, 'message': 'Contact has been added.'});
+                res.json({'success': true, 'message': 'Item has been added.'});
             }
             else
             {
-                res.json({'success': false, 'message': 'Contact has not been added.'});
+                res.json({'success': false, 'message': 'Item has not been added.'});
             }
         }
     )

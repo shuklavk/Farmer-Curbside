@@ -39,7 +39,7 @@ class CustomerPurchase extends Component {
           <Header />
           <div className="CustomerPurchase">
             {farmerData.map((item, index) => {
-              return (<FarmerCard item={item} />)
+              return (<FarmerCard item={item} user={user} />)
             })}
           </div>
         </div>
@@ -48,39 +48,3 @@ class CustomerPurchase extends Component {
 }
   
 export default CustomerPurchase;
-
-    // let farmerData = [
-    //   {
-    //     name: "David",
-    //     product: "Apples",
-    //     price: 5.99,
-    //   },
-    //   {
-    //     name: "Joe",
-    //     product: "Tomatoes",
-    //     price: 4.99,
-    //   },{
-    //     name: "Joe",
-    //     product: "Pears",
-    //     price: 4.99,
-    //   },{
-    //     name: "Joe",
-    //     product: "Grapes",
-    //     price: 4.99,
-    //   },
-    //   {
-    //     name: "Joe",
-    //     product: "Bananas",
-    //     price: 4.99,
-    //   },
-    //   {
-    //     name: "Joe",
-    //     product: "Bananas",
-    //     price: 4.99,
-    //   },
-    //   {
-    //     name: "Joe",
-    //     product: "Bananas",
-    //     price: 4.99,
-    //   },
-    // ];

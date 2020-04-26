@@ -4,11 +4,14 @@ import { Button, Card, CardHeader, Typography, CardContent } from '@material-ui/
 import '../styles/FarmerCard.css'
 import Unsplash from 'unsplash-js';
 import { toJson } from "unsplash-js";
+import axios from 'axios';
 import { useState } from 'react';
 const unsplash = new Unsplash({
   accessKey: "8h9wdatDrugd4YLMhWPGyDl-QL2UBQnSrJ3Sn3GKoaU",
   secret: "nxRA_GcpDwKOMpj19ltHwkQ52VTyaEnbM7pbz98tUvA"
 });
+
+
 
 function FarmerCard(props) {
   console.log(props);
@@ -22,6 +25,16 @@ function FarmerCard(props) {
   // }
   const [imageURL, setImageURL] = useState('');
 
+  const makePurchase = () => {
+    const { item, user } = props;
+    axios.post(`/api/add/purchase/${user._id}`, {
+      item_id: item._id,
+      farmer_id: item.farmer._id,
+      quantity: 1,
+      readyPickup: false
+    })
+  }
+
   // getImages(item.productName);
   // console.log('HERE: ', imageURL);
   return (
@@ -33,7 +46,7 @@ function FarmerCard(props) {
           <Typography gutterBottom variant="h4">
             {item.price}/{item.productName}
           </Typography>
-          <Button variant="contained" color="secondary">Add to Cart</Button>
+          <Button variant="contained" color="secondary" onClick={() => makePurchase()}>Add to Cart</Button>
         </CardContent>
       </Card>
     </div>

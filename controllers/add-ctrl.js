@@ -1,4 +1,5 @@
 const Items = require('../models/items-model');
+const Purchase = require('../models/purchase-model');
 
 addItem = (req, res) =>
 {
@@ -28,4 +29,33 @@ addItem = (req, res) =>
     )
 };
 
-module.exports = {addItem};
+addPurchase = (req, res) => {
+    let purchase = req.body;
+
+    Purchase.update
+    (
+        {buyer_id: req.params.user_id,
+        farmer_id: purchase.farmer_id,
+        item_id: purchase.item_id},
+        purchase,
+        {upsert: true},
+        (err, result) =>
+        {
+            if (err)
+            {
+                res.json({'success': false, 'message': 'An error has occurred.'});
+            }
+            console.log(result)
+            if (result === null)
+            {
+                res.json({'success': true, 'message': 'Purchase has been added.'});
+            }
+            else
+            {
+                res.json({'success': false, 'message': 'Purchase has not been added.'});
+            }
+        }
+    )
+}
+
+module.exports = {addItem, addPurchase};

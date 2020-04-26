@@ -30,6 +30,7 @@ function FarmerCard(props) {
     axios.post(`/api/add/purchase/${user._id}`, {
       item_id: item._id,
       farmer_id: item.farmer._id,
+      item: item,
       quantity: 1,
       readyPickup: false
     })

@@ -6,13 +6,16 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Header from './CustomerHeader';
+import axios from 'axios';
 import '../styles/custom.scss';
 
 class ViewPurchase extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
+            purchases: [],
+            dataFetched: false,
             Purchases: [
                 {
                     name: "David",
@@ -38,6 +41,19 @@ class ViewPurchase extends Component {
         }
     }
 
+    fetchItems() {
+        const { user } = this.props;
+        axios.get(`/api/showAll/purchases/${user._id}`)
+        .then((res) => {
+            console.log(res);
+            this.setState({ dataFetched: true, purchases: res.data.results });
+        })
+        .catch((err) => {
+            console.log(err);
+            this.setState({ dataFetched: true });
+        })
+    }
+
     decreaseQuantity(index){
         const { Purchases } = this.state;
         Purchases[index].item.quantity--;
@@ -56,13 +72,19 @@ class ViewPurchase extends Component {
         this.setState({ Purchases });
     }
 
-    render(){
+    render() {
+        const { purchases, dataFetched } = this.state;
+        const { user } = this.props;
+        if (user && !dataFetched) {
+          this.fetchItems();
+        }
+
         return (
             <div className="ViewPurchase"> 
                 <Header />
                 <div className="container">                
                     {
-                        this.state.Purchases.map((data, index) => (
+                        purchases.map((data, index) => (
                             <Card className="mt-5">
                                 <CardContent className="bg-danger text-light">
                                     <Typography variant="h4">{data.item.name} - Farmer {data.name}</Typography>

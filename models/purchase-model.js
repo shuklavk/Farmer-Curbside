@@ -6,6 +6,7 @@ let Purchase = new Schema(
         buyer_id: {type: Schema.Types.ObjectId, required: true},
         farmer_id: {type: Schema.Types.ObjectId, required: true},
         item_id: {type: Schema.Types.ObjectId, required: true},
+        item: {type: Object, required: true},
         quantity: {type: Number, required: true},
         readyPickup: {type: Boolean, required: true}
     },

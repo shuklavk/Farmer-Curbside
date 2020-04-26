@@ -21,7 +21,8 @@ class FarmerAddItems extends React.Component{
     e.preventDefault();
     const { productName, productDescription, quantity, price } = this.state;
     const { user } = this.props;
-    axios.post('/api/additem', {
+    console.log(user)
+    axios.post(`/api/add/${user._id}`, {
       productName,
       productDescription,
       quantity,

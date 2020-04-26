@@ -16,29 +16,30 @@ class ViewPurchase extends Component {
         this.state = {
             purchases: [],
             dataFetched: false,
-            Purchases: [
-                {
-                    name: "David",
-                    item: {
-                        name: "Apples",
-	                    description: "Crab Apples grown from my farm in Riverside, California.",
-	                    price: "5.99",
-	                    quantity: "10"
-                    },
-                    readyForPickup: false
-                },
-                {
-                    name: "Joe",
-                    item: {
-                        name: "Banana",
-	                    description: "Crab Bananas grown from my farm in Riverside, California.",
-                        price: 4.99,
-	                    quantity: 5
-                    },
-                    readyForPickup: false
-                }
-            ]
+            parkingSpot: "",
         }
+    }
+
+    handleChange = (e) => this.setState({ [e.target.name]: e.target.value })
+
+    handlePickup() {
+        const { purchases, parkingSpot } = this.state;
+        const { user } = this.props;
+        purchases.forEach((purchase, index) => {
+            axios.post(`/api/add/purchase/${user._id}`, {
+                item_id: purchase.item_id,
+                farmer_id: purchase.farmer_id,
+                item: purchase.item,
+                quantity: purchase.quantity,
+                readyPickup: true,
+                parkingSpot,
+            }).then((res) => {
+                console.log(res);
+                window.location.href = '/pickupconfirmation'
+            }).catch((err) => {
+                console.log(err);
+            })
+        })
     }
 
     fetchItems() {
@@ -103,7 +104,11 @@ class ViewPurchase extends Component {
                             </Card>
                         ))
                     }
-                    <button className="btn btn-block btn-primary mt-5" onClick={() => { window.location.href = '/customerpickup' }}>Pickup Items</button>
+                    <div class="mt-5">
+                        <label for="parkingSpot">Parking Spot Number</label>
+                        <input name="parkingSpot" type="text" class="form-control" id="parkingSpot" onChange={this.handleChange}/>
+                    </div>
+                    <button className="btn btn-block btn-primary mt-5" onClick={() => { this.handlePickup() }}>Pickup Items</button>
                 </div>
             </div>
         );

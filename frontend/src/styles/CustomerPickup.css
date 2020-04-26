@@ -1,0 +1,15 @@
+.CustomerPickup {
+    text-align: center;
+    justify-content: space-evenly;
+    margin: 50px 300px 0 300px;
+}
+
+.customer-input {
+    margin-bottom: 10px;
+}
+
+.cart-image {
+    margin: 30px;
+    justify-content: space-evenly;
+    width: 450px;
+}

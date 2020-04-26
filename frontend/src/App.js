@@ -9,6 +9,8 @@ import Register from './components/Register';
 import ViewPurchase from './components/ViewPurchase';
 import CustomerPurchase from './components/CustomerPurchase';
 import FarmerAddItems from './components/FarmerAddItems';
+import CustomerPickup from './components/CustomerPickup';
+import PickupConfirmation from './components/PickupConfirmation';
 import axios from 'axios';
 
 class App extends Component {
@@ -59,6 +61,12 @@ class App extends Component {
           </Route>
           <Route path="/customerpurchase">
             <CustomerPurchase loggedIn={loggedIn} user={user} />
+          </Route>
+          <Route path="/customerpickup">
+            <CustomerPickup loggedIn={loggedIn} user={user} />
+          </Route>
+          <Route path="/pickupconfirmation">
+            <PickupConfirmation loggedIn={loggedIn} user={user} />
           </Route>
           <Route path="/additems">
             <FarmerAddItems loggedIn={loggedIn} user={user} />

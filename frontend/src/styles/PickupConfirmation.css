@@ -1,0 +1,11 @@
+.PickupConfirmation {
+    text-align: center;
+    justify-content: space-evenly;
+    margin: 50px 300px 0 300px;
+}
+
+.farmer-image {
+    margin: 30px;
+    justify-content: space-evenly;
+    width: 450px;
+}

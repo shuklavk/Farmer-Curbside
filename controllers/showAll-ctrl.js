@@ -7,7 +7,7 @@ showAllFarmerItems = (req, res) =>
     Items.aggregate
     (
         [
-            {$match: {"farmer_id": req.params.user_id}},
+            {$match: {"farmer_id": mongoose.Types.ObjectId(req.params.user_id)}},
             // {$unwind: "$items"}
         ],
         (err, results) =>

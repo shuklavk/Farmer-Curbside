@@ -28,8 +28,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 const authRouter = require("./routes/auth-router");
+const itemsRouter = require("./routes/items-router");
 
 app.use('/auth', authRouter);
+app.use('/api', itemsRouter)
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 app.get('/*', (req, res) => {

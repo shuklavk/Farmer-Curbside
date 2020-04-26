@@ -56,11 +56,27 @@ class FulFillmentCard extends Component {
     axios.get(`/api/showAll/purchasesReady/${user._id}`)
     .then((res) => {
         console.log(res);
-        this.setState({ dataFetched: true });
+        this.setState({ dataFetched: true, purchases: res.data.results !== undefined ? res.data.results : [] });
     })
     .catch((err) => {
         console.log(err);
         this.setState({ dataFetched: true });
+    })
+  }
+
+  fulfillOrder(index) {
+    const { purchases } = this.state;
+    const purchase = purchases[index];
+    axios.post(`/api/add/purchase/${purchase.buyer_id}`, {
+      item_id: purchase.item_id,
+      farmer_id: purchase.farmer_id,
+      item: purchase.item,
+      fulfilled: true
+    }).then((res) => {
+      console.log(res);
+      this.fetchItems()
+    }).catch((err) => {
+      console.log(err);
     })
   }
 
@@ -81,12 +97,12 @@ class FulFillmentCard extends Component {
             justify="space-evenly"
             alignItems="center"
           >
-            {testArr.map((order) => {
+            {purchases.map((purchase, index) => {
               return (
                 <Grid item xs={12}>
-                  <Paper justify="space-evenly" className={classes.paper}>Deliver {order.soldQuantity} {order.productName} to parking spot #{order.parkingSpot}      
-                  <span className='codeSpan'> <span className= 'code'>CODE: {order.deliveryCode}</span>
-                  <ColorButton className = {classes.button} variant="contained" size='large'>Fulfill Order</ColorButton>
+                  <Paper justify="space-evenly" className={classes.paper}>Deliver {purchase.quantity} {purchase.item.productName} to parking spot #{purchase.parkingSpot}      
+                  <span className='codeSpan'> <span className= 'code'>CODE: {purchase.buyer[0].code}</span>
+                  <ColorButton className = {classes.button} variant="contained" size='large' onClick={() => { this.fulfillOrder(index) }}>Fulfill Order</ColorButton>
                   </span>
                   </Paper>
                 </Grid>

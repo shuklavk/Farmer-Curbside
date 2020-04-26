@@ -3,6 +3,8 @@ import { Button, Card, CardHeader, Typography, CardContent } from '@material-ui/
 import { makeStyles } from '@material-ui/core/styles';
 import { borderRight } from '@material-ui/system';
 import '../styles/ProductCard.css'
+import TextField from '@material-ui/core/TextField';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,32 +18,43 @@ const useStyles = makeStyles((theme) => ({
 
 function ProductCard(props) {
   const classes = useStyles();
-
+  const { product } = props;
   return (
     <div className="FarmerCard">
       <Card raised={true}>
         <CardContent>
           <Typography variant="h4">
-            {props.name}
+            {product.productName}
           </Typography>
           <Typography gutterBottom variant="body2">
-            {props.description}
+            {product.productDescription}
           </Typography>
           <Typography variant="h5">
             Quantity
           </Typography>
           <Typography gutterBottom variant="body2">
-            {props.quantity}
+            {product.quantity}
           </Typography>
           <Typography variant="h5">
             Price
           </Typography>
           <Typography gutterBottom variant="body2">
-            ${props.price}
+            ${product.price}
           </Typography>
-          <div className="button_cont" align="center"><a className="editBtn" href="add-website-here" target="_blank" rel="nofollow noopener">Edit</a>
-          {" "}
-          <a className="deleteBtn" href="add-website-here" target="_blank" rel="nofollow noopener">Remove</a>
+          <div className="button_cont" align="center">
+            <a
+              className="editBtn"
+              target="_blank"
+              rel="nofollow noopener"
+              onClick={() => {}}
+            >Edit</a>
+            {" "}
+            <a
+              className="deleteBtn"
+              target="_blank"
+              rel="nofollow noopener"
+              onClick={() => { (props.deleteProduct(product.productName)) }}
+            >Remove</a>
           </div>
 
         </CardContent>

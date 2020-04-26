@@ -58,23 +58,28 @@ class ViewPurchase extends Component {
     render(){
         return (
             <div className="ViewPurchase"> 
-            {
-                this.state.Purchases.map((data, index) => (
-                    <Card class="bg-light">
-                        <CardContent>
-                            <Typography variant="h4">{data.item.name} - Farmer {data.name}</Typography>
-                            <Typography variant="h5">${data.item.price}/each</Typography>
-                            <Typography variant="h5" color="textSecondary">{data.item.description}</Typography>
-                            <Button onClick={() => this.decreaseQuantity(index)} className="btn btn-primary">-</Button>
-                            <Typography variant="h5" style={{display: "inline-block"}}>{data.item.quantity}</Typography>
-                            <Button onClick={() => this.increaseQuantity(index)} className="btn btn-primary">+</Button>
-                        </CardContent>
-                        <CardActions>
-                            <Button onClick={() => this.removeItem(index)} size="small">Remove</Button>
-                        </CardActions>
-                    </Card>
-                ))
-            }
+                <div className="container">                
+                    {
+                        this.state.Purchases.map((data, index) => (
+                            <Card className="mt-5">
+                                <CardContent className="bg-danger text-light">
+                                    <Typography variant="h4">{data.item.name} - Farmer {data.name}</Typography>
+                                    <Typography variant="h5">${data.item.price}/each</Typography>
+                                    <Typography variant="h5" className="text-dark">{data.item.description}</Typography>
+                                    
+                                </CardContent>
+                                <CardActions className="bg-white mt-2 mb-2">
+                                    <button onClick={() => this.removeItem(index)} className="btn btn-primary">Remove</button>
+                                    <div className="float-right">
+                                        <button onClick={() => this.decreaseQuantity(index)} className="btn btn-primary ml-5">-</button>
+                                        <Typography variant="h5" style={{display: "inline-block"}} className="ml-2 mr-2">{data.item.quantity}</Typography>
+                                        <button onClick={() => this.increaseQuantity(index)} className="btn btn-primary">+</button>
+                                    </div>   
+                                </CardActions>
+                            </Card>
+                        ))
+                    }
+                </div>
             </div>
         );
    }

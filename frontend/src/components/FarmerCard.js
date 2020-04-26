@@ -11,25 +11,27 @@ const unsplash = new Unsplash({
 });
 
 function FarmerCard(props) {
-  const getImages = (search) => {
-    unsplash.search.photos(search, 1, 20, { orientation: "landscape" })
-      .then(toJson)
-      .then(json => {
-        setImageURL( json.results[0].urls.raw);
-      });
-  }
+  console.log(props);
+  const { item } = props;
+  // const getImages = (search) => {
+  //   unsplash.search.photos(search, 1, 20, { orientation: "landscape" })
+  //     .then(toJson)
+  //     .then(json => {
+  //       setImageURL( json.results[0].urls.raw);
+  //     });
+  // }
   const [imageURL, setImageURL] = useState('');
 
-  getImages(props.product);
-  console.log('HERE: ', imageURL);
+  // getImages(item.productName);
+  // console.log('HERE: ', imageURL);
   return (
     <div className="FarmerCard">
       <Card>
-        <CardHeader title={props.product} subheader={`Supplied by: Farmer ${props.name}`} />
-        <img className='cardImage' src={imageURL}></img>
+        <CardHeader title={item.productName} subheader={`Supplied by: Farmer ${item.farmer.firstName} ${item.farmer.lastName}`} />
+        {/* <img className='cardImage' src={imageURL}></img> */}
         <CardContent>
           <Typography gutterBottom variant="h4">
-            {props.price}/{props.product}
+            {item.price}/{item.productName}
           </Typography>
           <Button variant="contained" color="secondary">Add to Cart</Button>
         </CardContent>

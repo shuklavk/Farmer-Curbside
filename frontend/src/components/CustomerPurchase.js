@@ -39,7 +39,7 @@ class CustomerPurchase extends Component {
           <Header />
           <div className="CustomerPurchase">
             {farmerData.map((item, index) => {
-              return (<FarmerCard item={item}/>)
+              return (<FarmerCard item={item} />)
             })}
           </div>
         </div>

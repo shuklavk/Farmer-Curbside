@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,11 +9,12 @@ import Header from './FarmerHeader';
 import '../styles/FulFillmentCard.css'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
 import {
   withStyles,
 } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const styles = theme => ({
   root: {
     flexGrow: 1,
     padding: '40px',
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     fontSize: '35px',
   },
-}));
+});
 
 const ColorButton = withStyles(theme => ({
   root: {
@@ -41,70 +42,77 @@ const testArr = [{ productName: 'oranges', soldQuantity: 10, parkingSpot: 'Z54',
 ];
 // ***************************************************
 
-export default function FulFillmentCard() {
-  // Keeping an array of completed tasks 
-  const [finishedTasks, setFinishedTasks] = useState([]);
-  const classes = useStyles();
-  let ordersArr = testArr.map((order, i) => {
-    // if task is already in completed task (checking by seeing if id in array) then have a disabled buttong
-    if (finishedTasks.includes(i)) {
-      return (
-        <Grid item xs={12}>
-          <Paper justify="space-evenly" className={classes.paper}>Deliver {order.soldQuantity} {order.productName} to parking spot #{order.parkingSpot}
-            <span className='codeSpan'> <span className='code'>CODE: {order.deliveryCode}</span>
-              <ColorButton
-                id={i}
-                className={classes.button}
-                variant="contained"
-                size='large'
-                onClick={(e) => {
-                  setFinishedTasks([...finishedTasks, i]);
-                  console.log(finishedTasks)
-                }}
-                disabled
-              >---Fulfilled---</ColorButton>
-            </span>
-          </Paper>
-        </Grid>
-      )
-    } 
-    // if task isnt complete yet, make a clickable button
-    else {
-
-      return (
-        <Grid item xs={12}>
-          <Paper justify="space-evenly" className={classes.paper}>Deliver {order.soldQuantity} {order.productName} to parking spot #{order.parkingSpot}
-            <span className='codeSpan'> <span className='code'>CODE: {order.deliveryCode}</span>
-              <ColorButton
-                id={i}
-                className={classes.button}
-                variant="contained"
-                size='large'
-                onClick={(e) => {
-                  setFinishedTasks([...finishedTasks, i]);
-                }}
-                disabled={false}
-              >Fulfill Order</ColorButton>
-            </span>
-          </Paper>
-        </Grid>
-      )
+class FulFillmentCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      purchases: [],
+      dataFetched: false
     }
-  })
+  }
 
-  return (
-    <div>
-      <Header />
-      <div className={classes.root}>
-        <Grid container spacing={3}
-          justify="space-evenly"
-          alignItems="center"
-        >
-          {ordersArr}
-        </Grid>
+  fetchItems() {
+    const { user } = this.props;
+    axios.get(`/api/showAll/purchasesReady/${user._id}`)
+    .then((res) => {
+        console.log(res);
+        this.setState({ dataFetched: true, purchases: res.data.results !== undefined ? res.data.results : [] });
+    })
+    .catch((err) => {
+        console.log(err);
+        this.setState({ dataFetched: true });
+    })
+  }
+
+  fulfillOrder(index) {
+    const { purchases } = this.state;
+    const purchase = purchases[index];
+    axios.post(`/api/add/purchase/${purchase.buyer_id}`, {
+      item_id: purchase.item_id,
+      farmer_id: purchase.farmer_id,
+      item: purchase.item,
+      fulfilled: true
+    }).then((res) => {
+      console.log(res);
+      this.fetchItems()
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
+  render() {
+    const { classes } = this.props;
+    const { purchases, dataFetched } = this.state;
+    const { user } = this.props;
+    if (user && !dataFetched) {
+      this.fetchItems();
+    }
+    
+    return (
+      <div>
+        <Header />
+        <div className={classes.root}>
+          <Grid container spacing={3} 
+            // direction="column"
+            justify="space-evenly"
+            alignItems="center"
+          >
+            {purchases.map((purchase, index) => {
+              return (
+                <Grid item xs={12}>
+                  <Paper justify="space-evenly" className={classes.paper}>Deliver {purchase.quantity} {purchase.item.productName} to parking spot #{purchase.parkingSpot}      
+                  <span className='codeSpan'> <span className= 'code'>CODE: {purchase.buyer[0].code}</span>
+                  <ColorButton className = {classes.button} variant="contained" size='large' onClick={() => { this.fulfillOrder(index) }}>Fulfill Order</ColorButton>
+                  </span>
+                  </Paper>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-// export default SimpleCard;
+export default withStyles(styles)(FulFillmentCard);

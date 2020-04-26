@@ -84,6 +84,7 @@ showAllPurchases = (req, res) =>
     (
         [
             {$match: {"buyer_id": mongoose.Types.ObjectId(req.params.user_id)}},
+            {$match: {"fulfilled": undefined}},
             {
                 $lookup: {
                     from: "users",
@@ -120,4 +121,48 @@ showAllPurchases = (req, res) =>
     )
 };
 
-module.exports = {showAllFarmerItems, showAllItems, showAllPurchases};
+showAllPurchasesReady = (req, res) =>
+{
+    Purchase.aggregate
+    (
+        [
+            {$match: {"farmer_id": mongoose.Types.ObjectId(req.params.user_id)}},
+            {$match: {"readyPickup": true}},
+            {$match: {"fulfilled": undefined}},
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "farmer_id",
+                    foreignField: "_id",
+                    as: "farmer"
+                }
+            },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "buyer_id",
+                    foreignField: "_id",
+                    as: "buyer"
+                }
+            }
+        ],
+        (err, results) =>
+        {
+            if (err)
+            {
+                res.json({'success': false, 'message': 'An error has occurred.'});
+            }
+            
+            if (results != "")
+            {
+                res.json({'success': true, results: results});
+            }
+            else
+            {
+                res.json({'success': false, 'message': 'No search results.'});
+            }
+        }
+    )
+};
+
+module.exports = {showAllFarmerItems, showAllItems, showAllPurchases, showAllPurchasesReady};

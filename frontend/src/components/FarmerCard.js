@@ -40,7 +40,7 @@ function FarmerCard(props) {
   // console.log('HERE: ', imageURL);
   return (
     <div className="FarmerCard">
-      <Card>
+      <Card raised={true}>
         <CardHeader title={item.productName} subheader={`Supplied by: Farmer ${item.farmer.firstName} ${item.farmer.lastName}`} />
         {/* <img className='cardImage' src={imageURL}></img> */}
         <CardContent>

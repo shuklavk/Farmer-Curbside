@@ -1,5 +1,6 @@
 import React from 'react';
 import FarmerCard from './FarmerCard';
+import Header from './CustomerHeader';
 import '../styles/CustomerPurchase.css'
 
 function CustomerPurchase() {
@@ -14,10 +15,28 @@ function CustomerPurchase() {
         product: "Bananas",
         price: 4.99,
       },
+      {
+        name: "Joe",
+        product: "Bananas",
+        price: 4.99,
+      },
+      {
+        name: "Joe",
+        product: "Bananas",
+        price: 4.99,
+      },
+      {
+        name: "Joe",
+        product: "Bananas",
+        price: 4.99,
+      },
     ];
     return (
-      <div className="CustomerPurchase">
-        {farmerData.map((farmer) => (<FarmerCard name={farmer.name} product={farmer.product} price={farmer.price}/>))}
+      <div>
+        <Header />
+        <div className="CustomerPurchase">
+          {farmerData.map((farmer) => (<FarmerCard name={farmer.name} product={farmer.product} price={farmer.price}/>))}
+        </div>
       </div>
     );
 }

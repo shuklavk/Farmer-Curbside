@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import '../styles/Header.css'
 
-class Header extends React.Component {
+class FarmerHeader extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -35,4 +35,4 @@ class Header extends React.Component {
     }
   }
   
-export default Header;
+export default FarmerHeader;

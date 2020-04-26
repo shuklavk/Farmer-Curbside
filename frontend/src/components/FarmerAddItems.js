@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from './FarmerHeader';
 import '../styles/FarmerAddItems.css'
 import { Redirect } from 'react-router';
 import axios from 'axios';

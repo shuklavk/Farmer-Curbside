@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import FarmerHeader from '../components/FarmerHeader';
 import '../styles/FarmerAddItems.css'
 import { Redirect } from 'react-router';
 import axios from 'axios';
@@ -82,7 +82,7 @@ class FarmerAddItems extends React.Component{
           user
           ? (
             <div className="farmeradd">
-              <Header />
+              <FarmerHeader />
               <form action="/" method="get" onSubmit={this.addItem}>
                 <div className='inputSlot'>
                   <input type="text" id="productName" placeholder="Product Name" required onChange={(e) => { this.onProductNameChange(e.target.value) }} />

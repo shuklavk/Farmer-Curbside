@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import '../styles/custom.scss';
+import CustomerHeader from '../components/CustomerHeader';
 
 class ViewPurchase extends Component {
 
@@ -58,6 +59,7 @@ class ViewPurchase extends Component {
     render(){
         return (
             <div className="ViewPurchase"> 
+                <CustomerHeader />
                 <div className="container">                
                     {
                         this.state.Purchases.map((data, index) => (

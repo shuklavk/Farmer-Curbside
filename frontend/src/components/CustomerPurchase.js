@@ -1,6 +1,7 @@
 import React from 'react';
 import FarmerCard from './FarmerCard';
 import '../styles/CustomerPurchase.css'
+import CustomerHeader from '../components/CustomerHeader';
 
 function CustomerPurchase() {
     let farmerData = [
@@ -17,6 +18,7 @@ function CustomerPurchase() {
     ];
     return (
       <div className="CustomerPurchase">
+        <CustomerHeader />
         {farmerData.map((farmer) => (<FarmerCard name={farmer.name} product={farmer.product} price={farmer.price}/>))}
       </div>
     );

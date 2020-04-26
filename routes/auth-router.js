@@ -44,7 +44,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-	const { username, password, firstName, lastName, type } = req.body
+	const { username, password, firstName, lastName, type, code } = req.body
 	User.findOne({ 'local.username': username }, (err, userMatch) => {
 		console.log(userMatch);
 		if (userMatch) {
@@ -57,7 +57,8 @@ router.post('/register', (req, res) => {
             'local.password': password,
             'firstName': firstName,
             'lastName': lastName,
-            'type': type
+			'type': type,
+			'code': code
 		})
 		newUser.save((err, savedUser) => {
 			if (err) return res.json(err)

@@ -30,6 +30,9 @@ class Register extends Component {
       code
     }).then((res) => {
       console.log(res);
+      if (res.statusCode === 200) {
+        window.location.href = '/login'
+      }
     }).catch((err) => {
       console.log(err);
     })

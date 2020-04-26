@@ -20,12 +20,15 @@ function PickupConfirmation(props) {
       {
         user !== null
         ? (
-          <div className="PickupConfirmation">
-            <h1>Your goods will be delivered shortly!<br></br>Your unique code for pickup is:<br></br> {user.code}!</h1>
-            <form>
-                <Button variant="contained" color="secondary" onClick={() => {this.window.location.href = '/customerpurchasex'}}>Return To Discovery</Button>
-            </form>
-            <img className="farmer-image"src={image}></img>
+          <div>
+            <Header />
+            <div className="PickupConfirmation">
+              <h1>Your goods will be delivered shortly!<br></br>Your unique code for pickup is:<br></br> {user.code}!</h1>
+              <form>
+                  <Button variant="contained" color="secondary" onClick={() => {window.location.href = '/customerpurchase'}}>Return To Discovery</Button>
+              </form>
+              <img className="farmer-image"src={image}></img>
+            </div>
           </div>
         )
         : null
